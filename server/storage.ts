@@ -317,6 +317,7 @@ export class MemStorage implements IStorage {
       status: (order as any).status ?? "pending",
       userId: (order as any).userId ?? null,
       items: (order as any).items ?? [],
+      predictedBrainImpact: (order as any).predictedBrainImpact ?? null,
     };
     this.orders.set(id, newOrder);
     return newOrder;
@@ -356,6 +357,7 @@ export class MemStorage implements IStorage {
       productIds: (offer as any).productIds ?? null,
       isActive: (offer as any).isActive ?? true,
       isFlashDeal: (offer as any).isFlashDeal ?? false,
+      expiresAt: (offer as any).expiresAt ?? null,
     };
     this.offers.set(id, newOffer);
     return newOffer;
