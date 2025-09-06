@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 6%, 4%);
+  --foreground: hsl(240, 5%, 96%);
+  --card: hsl(240, 4%, 8%);
+  --card-foreground: hsl(240, 5%, 96%);
+  --popover: hsl(240, 4%, 8%);
+  --popover-foreground: hsl(240, 5%, 96%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(240, 4%, 12%);
+  --secondary-foreground: hsl(240, 5%, 84%);
+  --muted: hsl(240, 4%, 16%);
+  --muted-foreground: hsl(240, 5%, 64%);
+  --accent: hsl(240, 4%, 16%);
+  --accent-foreground: hsl(240, 5%, 84%);
+  --destructive: hsl(356, 90%, 54%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(240, 4%, 16%);
+  --input: hsl(240, 4%, 12%);
+  --ring: hsl(262, 83%, 58%);
+  --memory: hsl(217, 91%, 60%);
+  --focus: hsl(262, 83%, 58%);
+  --sleep: hsl(173, 58%, 39%);
+  --energy: hsl(25, 95%, 53%);
+  --mood: hsl(280, 65%, 60%);
+  --chart-1: hsl(262, 83%, 58%);
+  --chart-2: hsl(217, 91%, 60%);
+  --chart-3: hsl(173, 58%, 39%);
+  --chart-4: hsl(25, 95%, 53%);
+  --chart-5: hsl(280, 65%, 60%);
+  --radius: 0.75rem;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+.dark {
+  --background: hsl(240, 6%, 4%);
+  --foreground: hsl(240, 5%, 96%);
+  --card: hsl(240, 4%, 8%);
+  --card-foreground: hsl(240, 5%, 96%);
+  --popover: hsl(240, 4%, 8%);
+  --popover-foreground: hsl(240, 5%, 96%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(240, 4%, 12%);
+  --secondary-foreground: hsl(240, 5%, 84%);
+  --muted: hsl(240, 4%, 16%);
+  --muted-foreground: hsl(240, 5%, 64%);
+  --accent: hsl(240, 4%, 16%);
+  --accent-foreground: hsl(240, 5%, 84%);
+  --destructive: hsl(356, 90%, 54%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(240, 4%, 16%);
+  --input: hsl(240, 4%, 12%);
+  --ring: hsl(262, 83%, 58%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: linear-gradient(135deg, hsl(240, 6%, 4%) 0%, hsl(240, 8%, 6%) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .holographic-card {
+    @apply bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-lg border border-white/10 transition-all duration-300;
+  }
+
+  .holographic-card:hover {
+    @apply -translate-y-2 shadow-2xl;
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+    transform: translateY(-10px) rotateX(2deg);
+  }
+
+  .neural-connection {
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+    height: 2px;
+    animation: neural-pulse 2s ease-in-out infinite;
+  }
+
+  .ai-badge {
+    background: linear-gradient(45deg, rgba(139, 92, 246, 0.8), rgba(59, 130, 246, 0.8));
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .product-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .product-card:hover {
+    transform: translateY(-15px) scale(1.02);
+  }
+
+  .brain-region {
+    transition: all 0.3s ease;
+  }
+
+  .brain-region:hover {
+    filter: brightness(1.5);
+    transform: scale(1.1);
+  }
+
+  .neural-pathway {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-card:hover .neural-pathway {
+    opacity: 1;
+    animation: neural-pulse 1.5s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-memory {
+    color: hsl(217, 91%, 60%);
+  }
+  
+  .text-focus {
+    color: hsl(262, 83%, 58%);
+  }
+  
+  .text-sleep {
+    color: hsl(173, 58%, 39%);
+  }
+  
+  .text-energy {
+    color: hsl(25, 95%, 53%);
+  }
+  
+  .text-mood {
+    color: hsl(280, 65%, 60%);
+  }
+
+  .bg-memory {
+    background-color: hsl(217, 91%, 60%);
+  }
+  
+  .bg-focus {
+    background-color: hsl(262, 83%, 58%);
+  }
+  
+  .bg-sleep {
+    background-color: hsl(173, 58%, 39%);
+  }
+  
+  .bg-energy {
+    background-color: hsl(25, 95%, 53%);
+  }
+  
+  .bg-mood {
+    background-color: hsl(280, 65%, 60%);
+  }
+}
+
+@keyframes neural-pulse {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.05); 
+  }
+}
+
+@keyframes hologram {
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: translateY(0px) rotateX(0deg); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateY(-5px) rotateX(5deg); 
+  }
+}
+
+@keyframes glow {
+  from { 
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); 
+  }
+  to { 
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); 
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
+.animate-neural-pulse {
+  animation: neural-pulse 2s ease-in-out infinite;
+}
+
+.animate-hologram {
+  animation: hologram 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
