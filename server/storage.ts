@@ -242,7 +242,16 @@ export class MemStorage implements IStorage {
 
   async createProduct(product: InsertProduct): Promise<Product> {
     const id = randomUUID();
-    const newProduct: Product = { ...product, id, createdAt: new Date() };
+    const newProduct: Product = {
+      ...product,
+      id,
+      createdAt: new Date(),
+      imageUrl: (product as any).imageUrl ?? null,
+      neuralImpact: (product as any).neuralImpact ?? null,
+      ingredients: (product as any).ingredients ?? [],
+      inStock: (product as any).inStock ?? true,
+      aiScore: (product as any).aiScore ?? 0,
+    };
     this.products.set(id, newProduct);
     return newProduct;
   }
@@ -283,7 +292,14 @@ export class MemStorage implements IStorage {
 
   async createBundle(bundle: InsertBundle): Promise<Bundle> {
     const id = randomUUID();
-    const newBundle: Bundle = { ...bundle, id, createdAt: new Date() };
+    const newBundle: Bundle = {
+      ...bundle,
+      id,
+      createdAt: new Date(),
+      predictedImpact: (bundle as any).predictedImpact ?? null,
+      productIds: (bundle as any).productIds ?? [],
+      isActive: (bundle as any).isActive ?? true,
+    };
     this.bundles.set(id, newBundle);
     return newBundle;
   }
@@ -294,7 +310,15 @@ export class MemStorage implements IStorage {
 
   async createOrder(order: InsertOrder): Promise<Order> {
     const id = randomUUID();
-    const newOrder: Order = { ...order, id, createdAt: new Date() };
+    const newOrder: Order = {
+      ...order,
+      id,
+      createdAt: new Date(),
+      status: (order as any).status ?? "pending",
+      userId: (order as any).userId ?? null,
+      items: (order as any).items ?? [],
+      predictedBrainImpact: (order as any).predictedBrainImpact ?? null,
+    };
     this.orders.set(id, newOrder);
     return newOrder;
   }
@@ -326,7 +350,15 @@ export class MemStorage implements IStorage {
 
   async createOffer(offer: InsertOffer): Promise<Offer> {
     const id = randomUUID();
-    const newOffer: Offer = { ...offer, id, createdAt: new Date() };
+    const newOffer: Offer = {
+      ...offer,
+      id,
+      createdAt: new Date(),
+      productIds: (offer as any).productIds ?? null,
+      isActive: (offer as any).isActive ?? true,
+      isFlashDeal: (offer as any).isFlashDeal ?? false,
+      expiresAt: (offer as any).expiresAt ?? null,
+    };
     this.offers.set(id, newOffer);
     return newOffer;
   }
@@ -337,17 +369,22 @@ export class MemStorage implements IStorage {
 
   async addUserReward(reward: InsertUserReward): Promise<UserReward> {
     const id = randomUUID();
-    const newReward: UserReward = { ...reward, id, createdAt: new Date() };
+    const newReward: UserReward = {
+      ...reward,
+      id,
+      createdAt: new Date(),
+      userId: (reward as any).userId ?? null,
+    };
     this.userRewards.set(id, newReward);
-    
+
     // Update user points
     const user = await this.getUser(reward.userId!);
     if (user) {
-      await this.updateUserProfile(user.id, { 
-        neuralPoints: (user.neuralPoints || 0) + reward.pointsEarned 
+      await this.updateUserProfile(user.id, {
+        neuralPoints: (user.neuralPoints || 0) + reward.pointsEarned
       });
     }
-    
+
     return newReward;
   }
 
